@@ -1,6 +1,7 @@
 package specs;
 
 import com.google.gson.Gson;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.RateMovie;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ public class MovieSpec extends Hooks {
     private final MovieController movieController = new MovieController();
 
     @Test
+    @Description("Test: Should delete a movie list")
     public void movieDetailsTest() {
         Response response = movieController.getMovieDetails(4935);
         assertThat(response.statusCode(), equalTo(200));

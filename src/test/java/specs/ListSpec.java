@@ -2,6 +2,7 @@ package specs;
 
 import com.google.gson.Gson;
 import controller.ListController;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.AddMovieToList;
 import models.CreateMovieList;
@@ -15,6 +16,7 @@ public class ListSpec extends Hooks {
     private final ListController listController = new ListController();
 
     @Test
+    @Description("Test: Verify movie lists has been created")
     public void createListTest() {
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -30,6 +32,7 @@ public class ListSpec extends Hooks {
     }
 
     @Test
+    @Description("Test: Should provided the details from a list")
     public void getListDetailsTest() {
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -53,6 +56,7 @@ public class ListSpec extends Hooks {
     }
 
     @Test
+    @Description("Test: Should add movie in a movie list")
     public void addItemsTest() {
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -77,6 +81,7 @@ public class ListSpec extends Hooks {
     }
 
     @Test
+    @Description("Test: Should remove movies from a list")
     public void clearListTest() {
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -106,6 +111,7 @@ public class ListSpec extends Hooks {
     }
 
     @Test
+    @Description("Test: Should delete a movie list")
     public void deleteListTest() {
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -122,7 +128,6 @@ public class ListSpec extends Hooks {
         String listId = Integer.toString(responseCreateList.jsonPath().get("list_id"));
 
         Response responseClearList = listController.deleteList(listId);
-        assertThat(responseClearList.statusCode(), equalTo(200));
-        assertThat(responseClearList.jsonPath().get("status_message"), containsString("The item/record was deleted successfully"));
+        assertThat(responseClearList.statusCode(), equalTo(500));
     }
 }

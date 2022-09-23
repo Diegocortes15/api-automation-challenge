@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extra logging related to initialization of Log4j.
+ Set to debug or trace if log4j initialization is failing. -->
+<Configuration status="warn">
+    <Properties>
+        <Property name="LOG_PATTERN">[%p] %d [%t] %C{1}.%M | %m %ex%n</Property>
+        <Property name="APP_LOG_ROOT">
+            target/
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console appender configuration -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="driver"
+                     fileName="${APP_LOG_ROOT}/driver.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="login-successful"
+                     fileName="${APP_LOG_ROOT}/login-successful.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="login-failed"
+                     fileName="${APP_LOG_ROOT}/login-failed.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="search-successful"
+                     fileName="${APP_LOG_ROOT}/search-successful.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="movie-genre-filter"
+                     fileName="${APP_LOG_ROOT}/movie-genre-filter.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <RollingFile name="movie-dates-asc-order"
+                     fileName="${APP_LOG_ROOT}/movie-dates-asc-order.log"
+                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="driver" additivity="false" level="infoLog">
+            <AppenderRef ref="driver"/>
+        </Logger>
+
+        <Logger name="login-successful" additivity="false" level="infoLog">
+            <AppenderRef ref="login-successful"/>
+        </Logger>
+
+        <Logger name="login-failed" additivity="false" level="infoLog">
+            <AppenderRef ref="login-failed"/>
+        </Logger>
+
+        <Logger name="search-successful" additivity="false" level="infoLog">
+            <AppenderRef ref="search-successful"/>
+        </Logger>
+
+        <Logger name="movie-genre-filter" additivity="false" level="infoLog">
+            <AppenderRef ref="movie-genre-filter"/>
+        </Logger>
+
+        <Logger name="movie-dates-asc-order" additivity="false" level="infoLog">
+            <AppenderRef ref="movie-dates-asc-order"/>
+        </Logger>
+
+        <!-- Root logger referring to console appender -->
+        <Root level="all" additivity="false">
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>

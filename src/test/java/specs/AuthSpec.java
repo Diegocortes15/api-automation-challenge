@@ -2,6 +2,7 @@ package specs;
 
 import com.google.gson.Gson;
 import controller.AuthController;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.CreateSession;
 import models.RequestToken;
@@ -17,6 +18,7 @@ public class AuthSpec {
     private final AuthController authController = new AuthController();
 
     @Test
+    @Description("Verify session id has been created successfully")
     public void createSession() {
         Response responseGetCreateRequestToken = authController.getCreateRequestToken();
         assertThat(responseGetCreateRequestToken.statusCode(), equalTo(200));
