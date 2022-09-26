@@ -6,6 +6,8 @@ import io.restassured.response.Response;
 import data.Credentials;
 import models.CreateSession;
 import models.RequestToken;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeSuite;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,10 +16,19 @@ import static org.hamcrest.Matchers.hasKey;
 
 public abstract class Hooks {
 
+    private static final Logger sutLogger = LogManager.getLogger("sut");
+    private static final Logger authSpecLogger = LogManager.getLogger("auth-spec");
+    private static final Logger listSpecLogger = LogManager.getLogger("list-spec");
+    private static final Logger movieSpecLogger = LogManager.getLogger("movie-spec");
     protected final AuthController authController = new AuthController();
 
     @BeforeSuite
     public void createSession() {
+        sutLogger.info("Hook Before Suite: Generating session id");
+        authSpecLogger.info("Hook Before Suite: Generating session id");
+        listSpecLogger.info("Hook Before Suite: Generating session id");
+        movieSpecLogger.info("Hook Before Suite: Generating session id");
+
         Response responseGetCreateRequestToken = authController.getCreateRequestToken();
         assertThat(responseGetCreateRequestToken.statusCode(), equalTo(200));
         assertThat(responseGetCreateRequestToken.jsonPath().get("$"), hasKey("request_token"));

@@ -16,8 +16,8 @@
                     pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <RollingFile name="driver"
-                     fileName="${APP_LOG_ROOT}/driver.log"
+        <RollingFile name="sut"
+                     fileName="${APP_LOG_ROOT}/sut.log"
                      filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
@@ -33,8 +33,8 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
-        <RollingFile name="login-successful"
-                     fileName="${APP_LOG_ROOT}/login-successful.log"
+        <RollingFile name="auth-spec"
+                     fileName="${APP_LOG_ROOT}/auth-spec.log"
                      filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
@@ -50,8 +50,8 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
-        <RollingFile name="login-failed"
-                     fileName="${APP_LOG_ROOT}/login-failed.log"
+        <RollingFile name="list-spec"
+                     fileName="${APP_LOG_ROOT}/list-spec.log"
                      filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
@@ -67,8 +67,8 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
-        <RollingFile name="search-successful"
-                     fileName="${APP_LOG_ROOT}/search-successful.log"
+        <RollingFile name="tv-show-spec"
+                     fileName="${APP_LOG_ROOT}/tv-show-spec.log"
                      filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
@@ -84,25 +84,8 @@
             </DefaultRolloverStrategy>
         </RollingFile>
 
-        <RollingFile name="movie-genre-filter"
-                     fileName="${APP_LOG_ROOT}/movie-genre-filter.log"
-                     filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
-            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="10MB"/>
-            </Policies>
-            <!-- Max 10 files will be created everyday -->
-            <DefaultRolloverStrategy max="10">
-                <Delete basePath="${basePath}" maxDepth="10">
-                    <!-- Delete all files older than 30 days -->
-                    <IfLastModified age="30d"/>
-                </Delete>
-            </DefaultRolloverStrategy>
-        </RollingFile>
-
-        <RollingFile name="movie-dates-asc-order"
-                     fileName="${APP_LOG_ROOT}/movie-dates-asc-order.log"
+        <RollingFile name="tv-show-spec"
+                     fileName="${APP_LOG_ROOT}/tv-show-spec.log"
                      filePattern="${APP_LOG_ROOT}/tests-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] %c{1} - %msg%n"/>
             <Policies>
@@ -120,28 +103,24 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="driver" additivity="false" level="infoLog">
-            <AppenderRef ref="driver"/>
+        <Logger name="sut" additivity="false" level="infoLog">
+            <AppenderRef ref="sut"/>
         </Logger>
 
-        <Logger name="login-successful" additivity="false" level="infoLog">
-            <AppenderRef ref="login-successful"/>
+        <Logger name="auth-spec" additivity="false" level="infoLog">
+            <AppenderRef ref="auth-spec"/>
         </Logger>
 
-        <Logger name="login-failed" additivity="false" level="infoLog">
-            <AppenderRef ref="login-failed"/>
+        <Logger name="list-spec" additivity="false" level="infoLog">
+            <AppenderRef ref="list-spec"/>
         </Logger>
 
-        <Logger name="search-successful" additivity="false" level="infoLog">
-            <AppenderRef ref="search-successful"/>
+        <Logger name="movie-spec" additivity="false" level="infoLog">
+            <AppenderRef ref="movie-spec"/>
         </Logger>
 
-        <Logger name="movie-genre-filter" additivity="false" level="infoLog">
-            <AppenderRef ref="movie-genre-filter"/>
-        </Logger>
-
-        <Logger name="movie-dates-asc-order" additivity="false" level="infoLog">
-            <AppenderRef ref="movie-dates-asc-order"/>
+        <Logger name="tv-show-spec" additivity="false" level="infoLog">
+            <AppenderRef ref="tv-show-spec"/>
         </Logger>
 
         <!-- Root logger referring to console appender -->

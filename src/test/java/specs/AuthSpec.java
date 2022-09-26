@@ -6,6 +6,8 @@ import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.CreateSession;
 import models.RequestToken;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import data.Credentials;
 
@@ -15,11 +17,15 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class AuthSpec {
 
+    private static final Logger authSpecLogger = LogManager.getLogger("auth-spec");
+    private static final Logger sutLogger = LogManager.getLogger("sut");
     private final AuthController authController = new AuthController();
 
     @Test
-    @Description("Verify session id has been created successfully")
+    @Description("Test: Verify session id has been created successfully")
     public void createSession() {
+        sutLogger.info("Test: Verify session id has been created successfully");
+        authSpecLogger.info("Test: Verify session id has been created successfully");
         Response responseGetCreateRequestToken = authController.getCreateRequestToken();
         assertThat(responseGetCreateRequestToken.statusCode(), equalTo(200));
         assertThat(responseGetCreateRequestToken.jsonPath().get("$"), hasKey("request_token"));

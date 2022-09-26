@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="themoviedb" thread-count="5" parallel="tests"  verbose="1">
+<suite name="themoviedb" thread-count="4" parallel="tests"  verbose="1">
 
     <test name="Authentication">
         <classes>
@@ -8,9 +8,15 @@
         </classes>
     </test>
 
-    <test name="Lists">
+    <test name="List specs">
         <classes>
             <class name="specs.ListSpec"/>
+        </classes>
+    </test>
+
+    <test name="Delete list">
+        <classes>
+            <class name="specs.DeleteListSpec"/>
         </classes>
     </test>
 
