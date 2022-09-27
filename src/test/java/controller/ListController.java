@@ -23,7 +23,7 @@ public class ListController extends BaseController {
         return makeGetRequest(queryParams, path);
     }
 
-    public Response addItems(String listId, String body) {
+    public Response addItem(String listId, String body) {
         HashMap<String, String> queryParams = new HashMap<>();
         queryParams.put("session_id", Credentials.SESSION_ID);
         String path = resource + "/" + listId + "/add_item";

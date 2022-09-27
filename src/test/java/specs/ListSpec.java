@@ -21,10 +21,10 @@ public class ListSpec extends Hooks {
     private final ListController listController = new ListController();
 
     @Test
-    @Description("Test: Verify movie lists has been created")
+    @Description("Test: Verify movie list has been created")
     public void createListTest() {
-        sutLogger.info("Test: Verify movie lists has been created");
-        listSpecLogger.info("Test: Verify movie lists has been created");
+        sutLogger.info("Test: Verify movie list has been created");
+        listSpecLogger.info("Test: Verify movie list has been created");
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -39,7 +39,7 @@ public class ListSpec extends Hooks {
         assertThat(responseCreateList.jsonPath().get("success"), equalTo(true));
 
         String listId = Integer.toString(responseCreateList.jsonPath().get("list_id"));
-         deleteList(listId);
+        deleteList(listId);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class ListSpec extends Hooks {
         AddMovieToList addMovieToList = new AddMovieToList(157336);
         String jsonMovie = new Gson().toJson(addMovieToList);
 
-        Response response = listController.addItems(listId, jsonMovie);
+        Response response = listController.addItem(listId, jsonMovie);
         assertThat(response.statusCode(), equalTo(201));
         assertThat(response.jsonPath().get("success"), equalTo(true));
         assertThat(response.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
@@ -124,7 +124,7 @@ public class ListSpec extends Hooks {
         AddMovieToList addMovieToList = new AddMovieToList(157336);
         String jsonMovie = new Gson().toJson(addMovieToList);
 
-        Response response = listController.addItems(listId, jsonMovie);
+        Response response = listController.addItem(listId, jsonMovie);
         assertThat(response.statusCode(), equalTo(201));
         assertThat(response.jsonPath().get("success"), equalTo(true));
         assertThat(response.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
