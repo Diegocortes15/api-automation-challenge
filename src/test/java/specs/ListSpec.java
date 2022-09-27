@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
+import static helpers.DeleteHelper.deleteList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -27,7 +28,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description 2",
+                "None Description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -38,7 +39,7 @@ public class ListSpec extends Hooks {
         assertThat(responseCreateList.jsonPath().get("success"), equalTo(true));
 
         String listId = Integer.toString(responseCreateList.jsonPath().get("list_id"));
-        deleteList(listId);
+         deleteList(listId);
     }
 
     @Test
@@ -49,7 +50,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description 2",
+                "None Description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -78,7 +79,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description 2",
+                "None Description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -108,7 +109,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description 2",
+                "None Description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -133,18 +134,5 @@ public class ListSpec extends Hooks {
         assertThat(responseClearList.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
 
         deleteList(listId);
-    }
-
-    public void deleteList(String list_id) {
-        sutLogger.info("Remove movie list from test");
-        listSpecLogger.info("Remove movie list from test");
-
-        Response responseDeleteList = listController.deleteList(list_id);
-        assertThat(responseDeleteList.statusCode(), equalTo(500));
-
-        Response responseGetListDetails = listController.getListDetails(list_id);
-        assertThat(responseGetListDetails.statusCode(), equalTo(404));
-        assertThat(responseGetListDetails.jsonPath().get("success"), equalTo(false));
-        assertThat(responseGetListDetails.jsonPath().get("status_message"), containsString("The resource you requested could not be found"));
     }
 }
