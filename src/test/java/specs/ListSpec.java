@@ -28,7 +28,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description test",
+                "None description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -50,7 +50,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description test",
+                "None description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -79,7 +79,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description test",
+                "None description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 
@@ -109,7 +109,7 @@ public class ListSpec extends Hooks {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description test",
+                "None description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 

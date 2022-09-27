@@ -6,14 +6,14 @@
 ### Auth Spec
 ---
 
-**SCENARIO**: User wants to login in TMDB</br>
+**SCENARIO**: User wants login in TMDB</br>
 **DESCRIPTION**: Verify session id has been created successfully
 
 **GIVEN**	The user has the TMDB url</br>
 **AND** The user has an api key
 
 **WHEN** User creates a request token</br>
-**AND** User creates creates a session with username and password using request token
+**AND** User creates a session with username and password using request token
 
 **THEN** Should return the session_id
 
@@ -21,7 +21,7 @@
 ### List Spec
 ---
 
-**SCENARIO**: An user wants to created a list of movies </br>
+**SCENARIO**: An user wants to create a list of movies </br>
 **DESCRIPTION**: Verify movie list has been created
 
 **GIVEN** The user has the TMDB url</br>
@@ -36,7 +36,7 @@
 
 ---
 
-**SCENARIO**: An user wants getting the list details</br>
+**SCENARIO**: An user wants get the list details</br>
 **DESCRIPTION**: Should provide the details from a list
 
 **GIVEN** The user has the TMDB url</br>

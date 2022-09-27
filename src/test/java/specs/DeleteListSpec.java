@@ -26,7 +26,7 @@ public class DeleteListSpec {
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
-                "None Description test",
+                "None description test",
                 "en");
         String jsonList = new Gson().toJson(createMovieList);
 

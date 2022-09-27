@@ -1,7 +1,6 @@
 package specs;
 
 import com.google.gson.Gson;
-import controller.ListController;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.RateMovie;
