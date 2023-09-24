@@ -9,12 +9,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class DeleteHelper {
-    private static final Logger listSpecLogger = LogManager.getLogger("list-spec");
-    private static final Logger sutLogger = LogManager.getLogger("sut");
+public class SupportFactory {
     public static void deleteList(String list_id) {
-        sutLogger.info("Remove movie list from test");
-        listSpecLogger.info("Remove movie list from test");
+        LoggerLoad.info("Remove movie list from test");
 
         ListController listController = new ListController();
 

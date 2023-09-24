@@ -1,6 +1,7 @@
 package specs;
 
 import controller.TVShowController;
+import helpers.LoggerLoad;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
@@ -20,8 +21,7 @@ public class TVShowSpec {
     @Test
     @Description("Test: Should provide the details from a TV show")
     public void getTVShowDetailsTest() {
-        sutLogger.info("Test: Should provide the details from a TV show");
-        tvShowSpec.info("Test: Should provide the details from a TV show");
+        LoggerLoad.info("Test: Should provide the details from a TV show");
 
         Response response = tvShowController.getTVShowDetails(890);
         assertThat(response.statusCode(), equalTo(200));
@@ -33,8 +33,7 @@ public class TVShowSpec {
     @Test
     @Description("Test: Should provide the alternatives titles from a TV show")
     public void getTVShowAlternativeTitlesTest() {
-        sutLogger.info("Test: Should provide the alternatives titles from a TV show");
-        tvShowSpec.info("Test: Should provide the alternatives titles from a TV show");
+        LoggerLoad.info("Test: Should provide the alternatives titles from a TV show");
 
         Response response = tvShowController.getTVShowAlternativeTitles(890);
         assertThat(response.statusCode(), equalTo(200));

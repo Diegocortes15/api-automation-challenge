@@ -1,7 +1,9 @@
 package specs;
 
 import com.google.gson.Gson;
+import constants.SuccessConstants;
 import controller.ListController;
+import helpers.LoggerLoad;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.AddMovieToList;
@@ -10,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
-import static helpers.DeleteHelper.deleteList;
+import static helpers.SupportFactory.deleteList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -85,7 +87,7 @@ public class ListSpec extends Hooks {
 
         Response responseCreateList = listController.createList(jsonList);
         assertThat(responseCreateList.statusCode(), equalTo(201));
-        assertThat(responseCreateList.jsonPath().get("status_message"), containsString("The item/record was created successfully"));
+        assertThat(responseCreateList.jsonPath().get("status_message"), containsString(SuccessConstants.ITEM_RECORD_CREATE_MESSAGE_SUCCESS));
         assertThat(responseCreateList.jsonPath().get("success"), equalTo(true));
 
         String listId = Integer.toString(responseCreateList.jsonPath().get("list_id"));
@@ -96,7 +98,7 @@ public class ListSpec extends Hooks {
         Response response = listController.addItem(listId, jsonMovie);
         assertThat(response.statusCode(), equalTo(201));
         assertThat(response.jsonPath().get("success"), equalTo(true));
-        assertThat(response.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
+        assertThat(response.jsonPath().get("status_message"), containsString(SuccessConstants.ITEM_RECORD_UPDATE_MESSAGE_SUCCESS));
 
         deleteList(listId);
     }
@@ -104,8 +106,7 @@ public class ListSpec extends Hooks {
     @Test
     @Description("Test: Should remove movies from a list")
     public void clearListTest() {
-        sutLogger.info("Test: Should remove movies from a list");
-        listSpecLogger.info("Test: Should remove movies from a list");
+        LoggerLoad.info("Test: Should remove movies from a list");
 
         CreateMovieList createMovieList = new CreateMovieList(
                 "This is my awesome test list",
@@ -116,7 +117,7 @@ public class ListSpec extends Hooks {
         Response responseCreateList = listController.createList(jsonList);
         assertThat(responseCreateList.statusCode(), equalTo(201));
         assertThat(responseCreateList.jsonPath().get("$"), hasKey("list_id"));
-        assertThat(responseCreateList.jsonPath().get("status_message"), containsString("The item/record was created successfully"));
+        assertThat(responseCreateList.jsonPath().get("status_message"), containsString(SuccessConstants.ITEM_RECORD_CREATE_MESSAGE_SUCCESS));
         assertThat(responseCreateList.jsonPath().get("success"), equalTo(true));
 
         String listId = Integer.toString(responseCreateList.jsonPath().get("list_id"));
@@ -127,11 +128,11 @@ public class ListSpec extends Hooks {
         Response response = listController.addItem(listId, jsonMovie);
         assertThat(response.statusCode(), equalTo(201));
         assertThat(response.jsonPath().get("success"), equalTo(true));
-        assertThat(response.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
+        assertThat(response.jsonPath().get("status_message"), containsString(SuccessConstants.ITEM_RECORD_UPDATE_MESSAGE_SUCCESS));
 
         Response responseClearList = listController.clearList(listId);
         assertThat(responseClearList.statusCode(), equalTo(201));
-        assertThat(responseClearList.jsonPath().get("status_message"), containsString("The item/record was updated successfully"));
+        assertThat(responseClearList.jsonPath().get("status_message"), containsString(SuccessConstants.ITEM_RECORD_UPDATE_MESSAGE_SUCCESS));
 
         deleteList(listId);
     }

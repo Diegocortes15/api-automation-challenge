@@ -1,6 +1,7 @@
 package specs;
 
 import com.google.gson.Gson;
+import helpers.LoggerLoad;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import models.RateMovie;
@@ -21,8 +22,7 @@ public class MovieSpec extends Hooks {
     @Test
     @Description("Test: Should provide the details from a movie")
     public void movieDetailsTest() {
-        sutLogger.info("Test: Should provide the details from a movie");
-        movieSpecLogger.info("Test: Should provide the details from a movie");
+        LoggerLoad.info("Test: Should provide the details from a movie");
 
         Response response = movieController.getMovieDetails(4935);
         assertThat(response.statusCode(), equalTo(200));
